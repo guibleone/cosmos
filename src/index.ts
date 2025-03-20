@@ -1,9 +1,10 @@
+import "dotenv/config";
 import express from "express";
-import { PORT } from "./config/constants";
 import { logRequests } from "./middlewares/logger";
 import astroRouter from "./routes/astros";
 
 const app = express();
+const PORT = process.env.PORT ? process.env.PORT : 3000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
