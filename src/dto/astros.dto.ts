@@ -1,8 +1,4 @@
-export interface CreateAstroDto {
-  name: string;
-  category: string;
-  description?: string;
-  image_url?: string;
-  distance_sun: number;
-  weight: number;
-}
+import { z } from "zod";
+import { createAstroSchema } from "../config/schemas";
+
+export type CreateAstroDto = z.infer<typeof createAstroSchema>;

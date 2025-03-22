@@ -1,9 +1,10 @@
 import { NextFunction, Request, Response } from "express";
 import { PostgresError } from "postgres";
 import { HttpError } from "../config/errors";
+import { ZodError } from "zod";
 
 export default function errorHandler(
-  error: HttpError | PostgresError | Error,
+  error: HttpError | PostgresError | Error | ZodError,
   request: Request,
   response: Response,
   next: NextFunction
@@ -20,6 +21,12 @@ export default function errorHandler(
         message: error.message,
         detail: error.detail,
       },
+    });
+  } else if (error instanceof ZodError) {
+    response.status(400).send({
+      name: error.name,
+      fields: error.issues.map((issue) => issue.path),
+      messages: error.issues.map((issue) => issue.message),
     });
   } else {
     response.status(400).send({
