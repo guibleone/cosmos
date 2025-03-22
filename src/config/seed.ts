@@ -68,7 +68,8 @@ async function createTables() {
         distance_sun BIGINT,
         weight DOUBLE PRECISION,
         created_at TIMESTAMP DEFAULT NOW(),
-        updated_at TIMESTAMP DEFAULT NOW()
+        updated_at TIMESTAMP DEFAULT NOW(),
+        CONSTRAINT astros_name_UN UNIQUE(name)
       );
       `;
     console.log(chalk.green("Table (Astros) created successfully."));

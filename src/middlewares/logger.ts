@@ -3,7 +3,7 @@ import chalk from "chalk";
 
 const log = console.log;
 
-export function logRequests(
+export default function logRequests(
   request: Request,
   response: Response,
   next: NextFunction
