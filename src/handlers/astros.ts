@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from "express";
 import sql from "../config/db";
 import { Astro } from "../config/interfaces";
-import { CreateAstroDto } from "../dto/astros.dto";
-import { createAstroSchema } from "../config/schemas";
+import { CreateAstroDto, UpdateAstroDto } from "../dto/astros.dto";
+import { createAstroSchema, updateAstroSchema } from "../config/schemas";
 import { HttpError } from "../config/errors";
 
 // GET all astros handler
@@ -20,13 +20,13 @@ export async function getAstroById(
   const { id } = request.params;
   try {
     const parsedId = parseInt(id);
-    if (!parsedId) {
+    if (isNaN(parsedId) || id === undefined) {
       throw new HttpError(400, "ID inserido inválido");
     }
 
     const [astro] = await sql<
       Astro[]
-    >`SELECT * FROM astros WHERE id_astro=${id}`;
+    >`SELECT * FROM astros WHERE id_astro=${parsedId}`;
     if (!astro) {
       throw new HttpError(404, `Astro com id = ${parsedId} não econtrado.`);
     }
@@ -56,16 +56,55 @@ export async function createAstro(
   }
 }
 
+// PATCH Update astro by id
+export async function updateAstro(
+  request: Request<{ id: string }, {}, UpdateAstroDto>,
+  response: Response,
+  next: NextFunction
+) {
+  try {
+    const { id } = request.params;
+
+    const parsedId = parseInt(id);
+    if (isNaN(parsedId)) {
+      throw new HttpError(400, "ID inserido inválido");
+    }
+
+    const astro = request.body;
+
+    // Verify body astro data
+    updateAstroSchema.parse(astro);
+
+    const [foundAstro] = await sql<
+      Astro[]
+    >`SELECT * FROM astros WHERE id_astro = ${parsedId}`;
+    if (!foundAstro) {
+      throw new HttpError(404, `Astro com id = ${parsedId} não econtrado.`);
+    }
+
+    const updatedAstro = { ...astro, updated_at: new Date() };
+
+    await sql`UPDATE astros SET ${
+      Object.keys(astro).length === 0 ? sql(foundAstro) : sql(updatedAstro)
+    } WHERE id_astro = ${parsedId}`;
+
+    response.status(200).send(`<p>Astro atualizado com sucesso!</p>`);
+  } catch (error) {
+    next(error);
+  }
+}
+
 // DELETE Astro
 export async function deleteAstro(
   request: Request,
   respose: Response,
   next: NextFunction
 ) {
-  const { id } = request.params;
   try {
+    const { id } = request.params;
+
     const parsedId = parseInt(id);
-    if (!parsedId) {
+    if (isNaN(parsedId) || id === undefined) {
       throw new HttpError(400, "ID inserido inválido");
     }
 

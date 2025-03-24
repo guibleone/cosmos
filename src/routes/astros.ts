@@ -4,6 +4,7 @@ import {
   deleteAstro,
   getAllAstros,
   getAstroById,
+  updateAstro,
 } from "../handlers/astros";
 
 const router = Router();
@@ -18,7 +19,12 @@ router.get("/:id", getAstroById);
 // TODO: This route will require authenticated user.
 router.post("/", createAstro);
 
+// PATCH Update astro by id
+// TODO: This route will require authenticated user.
+router.patch("/:id", updateAstro)
+
 // DELETE astro
+// TODO: This route will require authenticated user.
 router.delete("/:id", deleteAstro);
 
 export default router;

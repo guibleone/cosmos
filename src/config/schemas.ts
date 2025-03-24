@@ -36,3 +36,5 @@ export const createAstroSchema = z.object({
     invalid_type_error: "Peso deve ser um número.",
   }),
 });
+
+export const updateAstroSchema = createAstroSchema.partial();
