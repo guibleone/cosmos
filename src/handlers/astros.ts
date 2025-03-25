@@ -20,10 +20,50 @@ async function findAstroById(id: number): Promise<Astro> {
   }
 }
 
+// Helper function to build and execute query
+async function fetchAstros(
+  search?: string,
+  category?: string
+): Promise<Astro[]> {
+  const baseQuery = sql<Astro[]>`SELECT * FROM astros`;
+
+  if (search?.trim() && category?.trim()) {
+    return await sql<Astro[]>`${baseQuery} 
+      WHERE unaccent(name) ILIKE unaccent(${ "%" + search + "%" }) 
+      AND category = ${category}`;
+  }
+  if (search?.trim()) {
+    return await sql<Astro[]>`${baseQuery} 
+      WHERE unaccent(name) ILIKE unaccent(${ "%" + search + "%" })`;
+  }
+  if (category?.trim()) {
+    return await sql<Astro[]>`${baseQuery} WHERE category = ${category}`;
+  }
+
+  return await baseQuery;
+}
+
+
 // GET all astros handler
-export async function getAllAstros(request: Request, response: Response) {
-  const astros = await sql<Astro[]>`SELECT * FROM astros`;
-  response.send(astros);
+export async function getAllAstros(
+  request: Request,
+  response: Response,
+  next: NextFunction
+) {
+  const searchParam = request.query.search as string | undefined;
+  const category = request.query.category as string | undefined;
+
+  try {
+    const astros = await fetchAstros(searchParam, category);
+
+    if (astros.length === 0) {
+      response.status(200).send("<p>Nenhum astro encontrado.</p>");
+    } else {
+      response.status(200).send(astros);
+    }
+  } catch (error) {
+    next(error);
+  }
 }
 
 // GET Astro by id

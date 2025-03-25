@@ -71,6 +71,8 @@ async function createTables() {
         updated_at TIMESTAMP DEFAULT NOW(),
         CONSTRAINT astros_name_UN UNIQUE(name)
       );
+
+      CREATE EXTENSION IF NOT EXISTS unaccent; 
       `;
     console.log(chalk.green("Table (Astros) created successfully."));
   } catch (error) {
@@ -87,6 +89,6 @@ async function insertData() {
   }
 }
 
-//dropTables();
+dropTables();
 //createTables();
-insertData();
+//insertData();
