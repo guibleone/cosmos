@@ -1,4 +1,4 @@
-export interface Astro {
+export type Astro = {
   id_astro: number;
   name: string;
   category: string;
@@ -8,5 +8,4 @@ export interface Astro {
   weight: number;
   created_at: Date;
   updated_at: Date;
-}
-
+};

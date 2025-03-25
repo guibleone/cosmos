@@ -6,6 +6,7 @@ import {
   getAstroById,
   updateAstro,
 } from "../handlers/astros";
+import getParamsId from "../middlewares/getParamsId";
 
 const router = Router();
 
@@ -13,7 +14,7 @@ const router = Router();
 router.get("/", getAllAstros);
 
 // GET Astro by id
-router.get("/:id", getAstroById);
+router.get("/:id", getParamsId, getAstroById);
 
 // POST Create new astro
 // TODO: This route will require authenticated user.
@@ -21,10 +22,10 @@ router.post("/", createAstro);
 
 // PATCH Update astro by id
 // TODO: This route will require authenticated user.
-router.patch("/:id", updateAstro)
+router.patch("/:id", getParamsId, updateAstro);
 
 // DELETE astro
 // TODO: This route will require authenticated user.
-router.delete("/:id", deleteAstro);
+router.delete("/:id", getParamsId, deleteAstro);
 
 export default router;
