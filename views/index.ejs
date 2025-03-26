@@ -19,13 +19,13 @@
       name="search"
       placeholder="Busque um astro..."
       hx-trigger="keyup delay:400ms changed"
-      hx-get="/api/astros"
+      hx-get="/astros"
       hx-target="#astros-display"
     />
 
     <select
       name="category"
-      hx-get="/api/astros"
+      hx-get="/astros"
       hx-trigger="change"
       hx-target="#astros-display"
     >
@@ -37,7 +37,7 @@
     <div
       id="astros-display"
       hx-indicator="#indicator"
-      hx-get="/api/astros"
+      hx-get="/astros"
       hx-swap="outterHTML"
       hx-trigger="load"
     ></div>

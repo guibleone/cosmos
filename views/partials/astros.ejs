@@ -1,0 +1,20 @@
+<section class="container">
+  <% astros.forEach(astro => { %>
+  <article class="astro">
+    <header>
+      <h1><%= astro.name %></h1>
+      <img
+        src="<%= astro.image_url %>"
+        alt="Imagem que representa <%= astro.name %>"
+      />
+    </header>
+    <section>
+      <p><%= astro.description %></p>
+      <p>Categoria: <%= astro.category %></p>
+      <p>Distância do Sol: <%= astro.distance_sun %></p>
+      <p>Peso: <%= astro.weight %></p>
+      <a href="/astros/<%= astro.id_astro %>">Ver detalhes</a>
+    </section>
+  </article>
+  <% }); %>
+</section>

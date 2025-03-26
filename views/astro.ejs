@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><% astro.name %></title>
+  </head>
+  <body>
+    <h1><%= astro.name %></h1>
+    <img src="<%= astro.image_url %>" alt="Imagem de <%= astro.name %>" />
+    <p><%= astro.description %></p>
+    <p>Categoria: <%= astro.category %></p>
+    <p>Distância do Sol: <%= astro.distance_sun %></p>
+    <p>Peso: <%= astro.weight %></p>
+    <a href="/">Voltar</a>
+  </body>
+</html>

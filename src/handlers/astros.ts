@@ -58,27 +58,7 @@ export async function getAllAstros(
     if (astros.length === 0) {
       response.status(200).send("<p>Nenhum astro encontrado.</p>");
     } else {
-      response.status(200).send(
-        `<section class="container">
-          ${astros
-            .map(
-              (astro) => `
-              <article class="astro"> 
-                <header>
-                  <h1>${astro.name}</h1>
-                  <img src="${astro.image_url}" alt="Imagem que representa ${astro.name}" />
-                </header>
-                <section>
-                  <p>${astro.description}</p>
-                  <p>${astro.category}</p>
-                  <p>${astro.distance_sun}</p>
-                  <p>${astro.weight}</p>
-                </section>
-              </article>`
-            )
-            .join("")}
-        </section>`
-      );
+      response.render("partials/astros", { astros });
     }
   } catch (error) {
     next(error);
@@ -94,7 +74,7 @@ export async function getAstroById(
   try {
     const { id_astro } = request;
     const astro = await findAstroById(id_astro);
-    response.status(200).send(astro);
+    response.render("astro", { astro });
   } catch (error) {
     next(error);
   }
