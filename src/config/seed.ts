@@ -4,7 +4,7 @@ import sql from "./db";
 const astrosData = [
   {
     name: "Sol",
-    category: "Estrela",
+    category: "estrela",
     description: "A estrela central do nosso sistema solar",
     image_url: "http://exemplo.com/sol.jpg",
     distance_sun: 0,
@@ -12,7 +12,7 @@ const astrosData = [
   },
   {
     name: "Terra",
-    category: "Planeta",
+    category: "planeta",
     description: "O planeta azul, lar da humanidade",
     image_url: "http://exemplo.com/terra.jpg",
     distance_sun: 149600000,
@@ -20,7 +20,7 @@ const astrosData = [
   },
   {
     name: "Marte",
-    category: "Planeta",
+    category: "planeta",
     description:
       "O planeta vermelho, com potencial para futuras missões de exploração",
     image_url: "http://exemplo.com/marte.jpg",
@@ -29,7 +29,7 @@ const astrosData = [
   },
   {
     name: "Júpiter",
-    category: "Planeta",
+    category: "planeta",
     description:
       "O maior planeta do sistema solar, famoso por sua Grande Mancha Vermelha",
     image_url: "http://exemplo.com/jupiter.jpg",
@@ -38,7 +38,7 @@ const astrosData = [
   },
   {
     name: "Saturno",
-    category: "Planeta",
+    category: "planeta",
     description:
       "Conhecido pelos seus belos anéis, é o segundo maior planeta do sistema solar",
     image_url: "http://exemplo.com/saturno.jpg",
@@ -70,10 +70,9 @@ async function createTables() {
         created_at TIMESTAMP DEFAULT NOW(),
         updated_at TIMESTAMP DEFAULT NOW(),
         CONSTRAINT astros_name_UN UNIQUE(name)
-      );
-
-      CREATE EXTENSION IF NOT EXISTS unaccent; 
+      )
       `;
+    await sql`CREATE EXTENSION IF NOT EXISTS unaccent;`;
     console.log(chalk.green("Table (Astros) created successfully."));
   } catch (error) {
     throw error;
@@ -89,6 +88,6 @@ async function insertData() {
   }
 }
 
-dropTables();
+//dropTables();
 //createTables();
-//insertData();
+insertData();

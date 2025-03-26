@@ -29,12 +29,12 @@ async function fetchAstros(
 
   if (search?.trim() && category?.trim()) {
     return await sql<Astro[]>`${baseQuery} 
-      WHERE unaccent(name) ILIKE unaccent(${ "%" + search + "%" }) 
+      WHERE unaccent(name) ILIKE unaccent(${"%" + search + "%"}) 
       AND category = ${category}`;
   }
   if (search?.trim()) {
     return await sql<Astro[]>`${baseQuery} 
-      WHERE unaccent(name) ILIKE unaccent(${ "%" + search + "%" })`;
+      WHERE unaccent(name) ILIKE unaccent(${"%" + search + "%"})`;
   }
   if (category?.trim()) {
     return await sql<Astro[]>`${baseQuery} WHERE category = ${category}`;
@@ -42,7 +42,6 @@ async function fetchAstros(
 
   return await baseQuery;
 }
-
 
 // GET all astros handler
 export async function getAllAstros(
@@ -59,7 +58,27 @@ export async function getAllAstros(
     if (astros.length === 0) {
       response.status(200).send("<p>Nenhum astro encontrado.</p>");
     } else {
-      response.status(200).send(astros);
+      response.status(200).send(
+        `<section class="container">
+          ${astros
+            .map(
+              (astro) => `
+              <article class="astro"> 
+                <header>
+                  <h1>${astro.name}</h1>
+                  <img src="${astro.image_url}" alt="Imagem que representa ${astro.name}" />
+                </header>
+                <section>
+                  <p>${astro.description}</p>
+                  <p>${astro.category}</p>
+                  <p>${astro.distance_sun}</p>
+                  <p>${astro.weight}</p>
+                </section>
+              </article>`
+            )
+            .join("")}
+        </section>`
+      );
     }
   } catch (error) {
     next(error);

@@ -3,9 +3,44 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/index.css" />
+    <script
+      src="https://unpkg.com/htmx.org@2.0.4"
+      integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+"
+      crossorigin="anonymous"
+    ></script>
     <title>Cosmos</title>
   </head>
   <body>
     <h1>Hello from Cosmos</h1>
+
+    <input
+      type="text"
+      name="search"
+      placeholder="Busque um astro..."
+      hx-trigger="keyup delay:400ms changed"
+      hx-get="/api/astros"
+      hx-target="#astros-display"
+    />
+
+    <select
+      name="category"
+      hx-get="/api/astros"
+      hx-trigger="change"
+      hx-target="#astros-display"
+    >
+      <option value="">Todos</option>
+      <option value="planeta">Planeta</option>
+      <option value="estrela">Estrela</option>
+    </select>
+
+    <div
+      id="astros-display"
+      hx-indicator="#indicator"
+      hx-get="/api/astros"
+      hx-swap="outterHTML"
+      hx-trigger="load"
+    ></div>
+    <img id="idicator" class="htmx-indicator" src="./asssets/spinner.svg" />
   </body>
 </html>
