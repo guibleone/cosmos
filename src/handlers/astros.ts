@@ -110,21 +110,37 @@ export async function updateAstro(
     const { id_astro } = request;
 
     const astro = request.body;
+    console.log(astro);
 
     // Verify body astro data
     updateAstroSchema.parse(astro);
 
     const foundAstro = await findAstroById(id_astro);
-    const updatedAstro = { ...astro, updated_at: new Date() };
+    const updatedAstro = { ...foundAstro, ...astro, updated_at: new Date() };
 
-    await sql`UPDATE astros SET ${
-      Object.keys(astro).length === 0 ? sql(foundAstro) : sql(updatedAstro)
-    } WHERE id_astro = ${id_astro}`;
+    await sql`UPDATE astros SET ${sql(
+      updatedAstro
+    )} WHERE id_astro = ${id_astro}`;
 
-    response.status(200).send(`<p>Astro atualizado com sucesso!</p>`);
+    response.status(200).render("astro", { astro: updatedAstro });
   } catch (error) {
     next(error);
   }
+}
+
+export async function getEditForm(
+  request: Request<{ id: string }, {}, UpdateAstroDto>,
+  response: Response,
+  next: NextFunction
+) {
+  try {
+    const { id_astro } = request;
+
+    const astro = await findAstroById(id_astro);
+
+    response.status(200);
+    response.render("partials/edit-form", { astro });
+  } catch (error) {}
 }
 
 // DELETE Astro

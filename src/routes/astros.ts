@@ -4,6 +4,7 @@ import {
   deleteAstro,
   getAllAstros,
   getAstroById,
+  getEditForm,
   updateAstro,
 } from "../handlers/astros";
 import getParamsId from "../middlewares/getParamsId";
@@ -23,6 +24,8 @@ router.post("/", createAstro);
 // PATCH Update astro by id
 // TODO: This route will require authenticated user.
 router.patch("/:id", getParamsId, updateAstro);
+// This route returns a edit form to the client
+router.get("/:id/edit", getParamsId, getEditForm);
 
 // DELETE astro
 // TODO: This route will require authenticated user.

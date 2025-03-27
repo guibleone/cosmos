@@ -69,6 +69,15 @@
   margin: auto;
 }
 
+.form-edit {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-edit > img {
+  width: 400px;
+}
+
 @media (min-width: 800px) {
   .container {
     grid-template-columns: repeat(5, 1fr);

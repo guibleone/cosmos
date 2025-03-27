@@ -12,19 +12,22 @@
     <title><% astro.name %></title>
   </head>
   <body>
-    <h1><%= astro.name %></h1>
-    <img src="<%= astro.image_url %>" alt="Imagem de <%= astro.name %>" />
-    <p><%= astro.description %></p>
-    <p>Categoria: <%= astro.category %></p>
-    <p>Distância do Sol: <%= astro.distance_sun %></p>
-    <p>Peso: <%= astro.weight %></p>
-    <a href="/">Voltar</a>
-    <button
-      hx-trigger="click"
-      hx-confirm="Tem certeza de deletar esse astro?"
-      hx-delete="/astros/<%= astro.id_astro  %>"
-    >
-      Deletar
-    </button>
+    <section hx-target="this" hx-swap="outerHTML">
+      <img src="<%= astro.image_url %>" alt="Imagem de <%= astro.name %>" />
+      <h1><%= astro.name %></h1>
+      <p><%= astro.description %></p>
+      <p>Categoria: <%= astro.category %></p>
+      <p>Distância do Sol: <%= astro.distance_sun %></p>
+      <p>Peso: <%= astro.weight %></p>
+      <a href="/">Voltar</a>
+      <button
+        hx-trigger="click"
+        hx-confirm="Tem certeza de deletar esse astro?"
+        hx-delete="/astros/<%= astro.id_astro  %>"
+      >
+        Deletar
+      </button>
+      <button hx-get="/astros/<%= astro.id_astro %>/edit">Editar</button>
+    </section>
   </body>
 </html>
