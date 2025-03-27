@@ -1,0 +1,31 @@
+<form
+  hx-post="/astros"
+  hx-trigger="submit"
+  hx-target="#response"
+  hx-swap="innerHTML"
+  class="form-create"
+  hx-
+>
+  <label for="name">Nome</label>
+  <input type="text" name="name" id="name" required />
+
+  <label for="category">Categoria</label>
+  <select name="category" id="category">
+    <option value="planeta">Planeta</option>
+    <option value="estrela">Estrela</option>
+    <option value="satelite">Satélite</option>
+  </select>
+
+  <label for="description">Descrição</label>
+  <input type="text" name="description" id="description" required />
+
+  <label for="image_url">Imagem</label>
+  <input type="url" name="image_url" id="image_url" />
+
+  <label for="distance_sun">Distância do Sol</label>
+  <input type="text" name="distance_sun" id="distance_sun" />
+
+  <label for="weight">Peso</label>
+  <input type="text" name="weight" id="weight" />
+  <button type="submit">Cadastrar</button>
+</form>

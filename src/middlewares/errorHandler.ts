@@ -23,11 +23,12 @@ export default function errorHandler(
       },
     });
   } else if (error instanceof ZodError) {
-    response.status(400).send({
-      name: error.name,
-      fields: error.issues.map((issue) => issue.path),
-      messages: error.issues.map((issue) => issue.message),
-    });
+    // response.status(400).send({
+    //   name: error.name,
+    //   fields: error.issues.map((issue) => issue.path),
+    //   messages: error.issues.map((issue) => issue.message),
+    // });
+    response.render("partials/errors/zod-error", { error });
   } else {
     response.status(400).send({
       name: error.name || "Error",

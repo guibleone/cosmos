@@ -93,6 +93,7 @@ export async function createAstro(
 
     await sql`INSERT INTO astros ${sql(astro)}`;
 
+    response.set("HX-Trigger", "updateAstros");
     response.status(201).send(`<p>Astro criado com sucesso!</p>`);
   } catch (error) {
     next(error);
@@ -129,7 +130,7 @@ export async function updateAstro(
 // DELETE Astro
 export async function deleteAstro(
   request: Request,
-  respose: Response,
+  response: Response,
   next: NextFunction
 ) {
   try {
@@ -142,7 +143,8 @@ export async function deleteAstro(
       throw new HttpError(404, `Astro com id = ${id_astro} não econtrado.`);
     }
 
-    respose.sendStatus(204);
+    response.set("HX-Location", "/");
+    response.sendStatus(204);
   } catch (error) {
     next(error);
   }
