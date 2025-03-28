@@ -18,7 +18,7 @@ app.use(express.static("public"));
 app.use(logger);
 
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("layout", { body: "pages/home", title: "Explore o Cosmos" });
 });
 app.use("/astros", astroRouter);
 app.use(errorHandler);

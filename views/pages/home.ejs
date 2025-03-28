@@ -1,0 +1,33 @@
+<section>
+  <h1>Explore o Cosmos</h1>
+  <input
+    type="text"
+    name="search"
+    placeholder="Busque um astro..."
+    hx-trigger="keyup delay:400ms changed"
+    hx-get="/astros"
+    hx-target="#astros-display"
+  />
+
+  <select
+    name="category"
+    hx-get="/astros"
+    hx-trigger="change"
+    hx-target="#astros-display"
+  >
+    <option value="">Todos</option>
+    <option value="planeta">Planeta</option>
+    <option value="estrela">Estrela</option>
+  </select>
+
+  <div
+    id="astros-display"
+    hx-get="/astros"
+    hx-swap="innerHTML"
+    hx-trigger="load, updateAstros from:body"
+  ></div>
+
+  <%- include('../partials/create-astro-form') %>
+
+  <div id="response"></div>
+</section>

@@ -139,7 +139,7 @@ export async function getEditForm(
     const astro = await findAstroById(id_astro);
 
     response.status(200);
-    response.render("partials/edit-form", { astro });
+    response.render("partials/edit-astro-form", { astro });
   } catch (error) {}
 }
 
