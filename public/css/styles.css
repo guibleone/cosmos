@@ -18,7 +18,7 @@ body {
   font-family: Geist, sans-serif;
   line-height: 1.6;
   color: #333;
-  max-width: 95vw;
+  max-width: 85vw;
   margin: auto;
 }
 
@@ -187,37 +187,134 @@ a:hover {
   font-size: 18px;
 }
 
-.navbar .search {
-  position: relative;
-}
-
-.navbar .search input {
-  border-radius: 15px;
-  padding: 10px 5px 10px 35px;
-  position: relative;
-}
-
-.navbar .search input::placeholder {
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.navbar .search img:first-of-type {
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 20px;
-  height: 20px;
-}
-
 .navbar .right {
   display: flex;
+}
+
+.navbar .right img:first-child {
+  width: 18px;
+  height: 18px;
+}
+.navbar .mobile {
+  display: none;
+}
+
+.navbar .mobile img {
+  width: 30px;
+}
+
+@media (max-width: 768px) {
+  .navbar .left h1 {
+    font-size: 24px;
+  }
+  .navbar .left img {
+    width: 30px;
+  }
+  .navbar ul {
+    display: none;
+  }
+  .navbar .right {
+    display: none;
+  }
+  .navbar .mobile {
+    display: flex;
+    gap: 10px;
+  }
+}
+
+.navbar .right button {
+  display: flex;
   align-items: center;
+  padding: 10px 10px;
+  border-radius: 15px;
+  background-color: transparent;
   gap: 5px;
+  font-weight: 600;
+  transition: all 0.7s ease;
+}
+
+.navbar .right button:hover {
+  cursor: pointer;
+  background-color: #f5f5f5;
 }
 
 .navbar .right img {
   width: 45px;
   height: 45px;
+}
+
+/* home header */
+.home-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  text-align: center;
+}
+
+.home-header img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.home-header h1 {
+  font-size: 90px;
+  font-weight: 700;
+}
+
+.home-header h2 {
+  font-size: 50px;
+  font-weight: 400;
+}
+
+.home-header span {
+  font-size: 60px;
+  font-weight: 700;
+}
+
+.home-header button {
+  padding: 20px 40px;
+  font-size: 36px;
+  font-weight: bold;
+  border-radius: 20px;
+  color: #fff;
+  background-color: #000;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.home-header button:hover {
+  color: #000;
+  background-color: #fff;
+}
+
+@media (max-width: 768px) {
+  .home-header {
+    gap: 20px;
+  }
+
+  .home-header img {
+    height: 120px;
+    border-radius: 15px;
+  }
+
+  .home-header h1 {
+    font-size: 50px;
+  }
+
+  .home-header h2 {
+    font-size: 30px;
+  }
+
+  .home-header span {
+    font-size: 40px;
+  }
+
+  .home-header button {
+    padding: 15px 30px;
+    font-size: 24px;
+    border-radius: 15px;
+  }
 }
