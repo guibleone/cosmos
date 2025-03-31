@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { HttpError } from "../config/errors";
+import { HttpError } from "../utils/errors";
 
 export default function getParamsId(
   request: Request,

@@ -1,9 +1,10 @@
 import { NextFunction, Request, Response } from "express";
-import sql from "../config/db";
+import sql from "../utils/db";
 import { CreateAstroDto, UpdateAstroDto } from "../dto/astros.dto";
 import { createAstroSchema, updateAstroSchema } from "../schemas/astros.schema";
-import { HttpError } from "../config/errors";
-import { Astro } from "../types/astro";
+import { HttpError } from "../utils/errors";
+import { Astro, QueryParams } from "../types/astro";
+import { solarSystem } from "../utils/consts";
 
 // Helper function to find astro by id on data base
 async function findAstroById(id: number): Promise<Astro> {
@@ -22,25 +23,39 @@ async function findAstroById(id: number): Promise<Astro> {
 
 // Helper function to build and execute query
 async function fetchAstros(
-  search?: string,
-  category?: string
+  search = "",
+  category = "",
+  filter = "",
+  limit = 10,
+  offset = 0
 ): Promise<Astro[]> {
-  const baseQuery = sql<Astro[]>`SELECT * FROM astros`;
+  const baseQuery = sql`SELECT * FROM astros`;
+  const limitOffset = sql`LIMIT ${limit} OFFSET ${offset}`;
+
+  if (filter?.trim() === "solar-system") {
+    return await sql<Astro[]>`${baseQuery} 
+        WHERE name in ${sql(solarSystem)} ${limitOffset}
+      `;
+  }
 
   if (search?.trim() && category?.trim()) {
     return await sql<Astro[]>`${baseQuery} 
       WHERE unaccent(name) ILIKE unaccent(${"%" + search + "%"}) 
-      AND category = ${category}`;
+      AND category = ${category}  ${limitOffset}`;
   }
   if (search?.trim()) {
     return await sql<Astro[]>`${baseQuery} 
-      WHERE unaccent(name) ILIKE unaccent(${"%" + search + "%"})`;
+      WHERE unaccent(name) ILIKE unaccent(${
+        "%" + search + "%"
+      })  ${limitOffset}`;
   }
   if (category?.trim()) {
-    return await sql<Astro[]>`${baseQuery} WHERE category = ${category}`;
+    return await sql<
+      Astro[]
+    >`${baseQuery} WHERE category = ${category} ${limitOffset}`;
   }
 
-  return await baseQuery;
+  return await sql<Astro[]>`${baseQuery} ${limitOffset}`;
 }
 
 // GET all astros handler
@@ -49,11 +64,19 @@ export async function getAllAstros(
   response: Response,
   next: NextFunction
 ) {
-  const searchParam = request.query.search as string | undefined;
-  const category = request.query.category as string | undefined;
+  const {
+    search,
+    category,
+    filter,
+    limit: limitStr = "10",
+    offset: offsetStr = "0",
+  } = request.query as QueryParams;
+
+  const limit = parseInt(limitStr, 10) || 10;
+  const offset = parseInt(offsetStr, 10) || 0;
 
   try {
-    const astros = await fetchAstros(searchParam, category);
+    const astros = await fetchAstros(search, category, filter, limit, offset);
 
     if (astros.length === 0) {
       response.status(200).send("<p>Nenhum astro encontrado.</p>");

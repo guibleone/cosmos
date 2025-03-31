@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { PostgresError } from "postgres";
-import { HttpError } from "../config/errors";
+import { HttpError } from "../utils/errors";
 import { ZodError } from "zod";
 
 export default function errorHandler(

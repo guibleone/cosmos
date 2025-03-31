@@ -9,3 +9,11 @@ export type Astro = {
   created_at: Date;
   updated_at: Date;
 };
+
+export type QueryParams = {
+  search?: string;
+  category?: string;
+  filter?: string;
+  limit?: string;
+  offset?: string;
+};

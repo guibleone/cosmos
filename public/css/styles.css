@@ -20,6 +20,7 @@ body {
   color: #333;
   max-width: 85vw;
   margin: auto;
+  padding: 0;
 }
 
 ul {
@@ -120,7 +121,8 @@ a:hover {
     grid-template-columns: repeat(3, 1fr);
   }
   body {
-    max-width: 90vw;
+    max-width: 95vw;
+    padding: 0px 20px 0px 10px;
   }
 }
 
@@ -276,7 +278,7 @@ a:hover {
 
 .home-header button {
   padding: 20px 40px;
-  font-size: 36px;
+  font-size: 30px;
   font-weight: bold;
   border-radius: 20px;
   color: #fff;
@@ -317,4 +319,34 @@ a:hover {
     font-size: 24px;
     border-radius: 15px;
   }
+}
+
+.solar-system {
+  display: flex;
+  flex-direction: column;
+  margin-top: 75px;
+}
+
+.solar-system .title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.solar-system .title img {
+  width: 40px;
+}
+
+.solar-system .title h1 {
+  font-size: 36px;
+}
+
+.solar-system .images {
+  display: grid;
+  padding: 20px 0;
+}
+
+.solar-system .images img {
+  width: 350px;
+  border-radius: 20px;
 }
