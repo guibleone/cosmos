@@ -20,7 +20,7 @@ export const createAstroSchema = z.object({
       invalid_type_error: "Descrição deve ser uma string.",
     })
     .min(5, { message: "Descrição deve ter no mínimo 5 caracteres." })
-    .max(100, { message: "Descrição deve ter no máximo 255 caracteres." })
+    .max(255, { message: "Descrição deve ter no máximo 255 caracteres." })
     .optional(),
   image_url: z
     .string({

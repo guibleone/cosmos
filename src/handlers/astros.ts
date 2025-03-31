@@ -97,7 +97,7 @@ export async function getAstroById(
   try {
     const { id_astro } = request;
     const astro = await findAstroById(id_astro);
-    response.render("astro", { astro });
+    response.render("pages/astro", { astro });
   } catch (error) {
     next(error);
   }
@@ -145,7 +145,7 @@ export async function updateAstro(
       updatedAstro
     )} WHERE id_astro = ${id_astro}`;
 
-    response.status(200).render("astro", { astro: updatedAstro });
+    response.status(200).render("pages/astro", { astro: updatedAstro });
   } catch (error) {
     next(error);
   }
