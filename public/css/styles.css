@@ -12,12 +12,12 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-body {
   font-family: Geist, sans-serif;
   line-height: 1.6;
   color: #333;
+}
+
+main {
   max-width: 75vw;
   margin: auto;
   padding: 0;
@@ -29,7 +29,7 @@ ul {
 
 a {
   text-decoration: none;
-  color: #007bff;
+  color: #000000;
 }
 
 a:hover {
@@ -53,11 +53,22 @@ a:hover {
 .astro .category {
   border-radius: 20px;
   text-align: center;
-  background-color: #4a9265;
   width: 120px;
   color: #fff;
   font-weight: bold;
   padding: 5px 0;
+}
+
+.planeta {
+  background-color: #4a9265;
+}
+
+.estrela {
+  background-color: #d5bf40;
+}
+
+.lua {
+  background-color: #199191;
 }
 
 .astro img {
@@ -75,9 +86,6 @@ a:hover {
 
 .astro footer {
   margin-top: auto;
-  background-color: #e9e9e9;
-  border-radius: 20px;
-  padding: 20px 20px;
   transition: all 0.3s ease;
 }
 
@@ -94,7 +102,7 @@ a:hover {
 }
 
 .astro h1,
-p:hover {
+.astro p:hover {
   cursor: pointer;
   text-decoration: underline;
 }
@@ -125,7 +133,7 @@ p:hover {
   .container {
     grid-template-columns: repeat(2, 1fr);
   }
-  body {
+  main {
     max-width: 100vw;
     padding: 0px 20px;
   }
@@ -162,9 +170,11 @@ p:hover {
 /* navbar*/
 .navbar {
   display: flex;
-  padding: 20px 0;
+  padding: 20px 0px;
   justify-content: space-between;
   align-items: center;
+  max-width: 75vw;
+  margin: auto;
 }
 
 .navbar .left {
@@ -211,6 +221,10 @@ p:hover {
 }
 
 @media (max-width: 768px) {
+  .navbar {
+    max-width: 100vw;
+    padding: 20px 10px;
+  }
   .navbar .left h1 {
     font-size: 24px;
   }
@@ -233,7 +247,6 @@ p:hover {
   display: flex;
   align-items: center;
   padding: 10px 10px;
-  border-radius: 15px;
   background-color: transparent;
   gap: 5px;
   font-weight: 600;
@@ -242,7 +255,8 @@ p:hover {
 
 .navbar .right button:hover {
   cursor: pointer;
-  background-color: #f5f5f5;
+  background-color: #000000;
+  color: #fff;
 }
 
 .navbar .right img {
@@ -326,32 +340,47 @@ p:hover {
   }
 }
 
-.solar-system {
+.astros-gallery {
   display: flex;
   flex-direction: column;
   margin-top: 75px;
 }
 
-.solar-system .title {
+.astros-gallery .title {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.solar-system .title img {
+.astros-gallery .title img {
   width: 40px;
 }
 
-.solar-system .title h1 {
+.astros-gallery .title h1 {
   font-size: 32px;
 }
 
-.solar-system .images {
+.astros-gallery .images {
   display: grid;
   padding: 20px 0;
 }
 
-.solar-system .images img {
+.astros-gallery .images img {
   width: 350px;
   border-radius: 20px;
+}
+
+.astros-gallery a {
+  align-self: flex-end;
+  font-size: 20px;
+}
+
+/* footer */
+.home-footer {
+  background-color: #d9d9d9;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
 }

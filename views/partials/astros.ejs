@@ -1,7 +1,14 @@
 <section class="container">
   <% astros.forEach(astro => { %>
   <article class="astro">
-    <p class="category"><%= astro.category %></p>
+    <% if(astro.category !== "Lua") { %>
+    <p
+      class="category <%= astro.category === 'Planeta' ? 'planeta' : '' %> <%= astro.category === 'Estrela' ? 'estrela' : '' %> <%= astro.category === 'Lua' ? 'lua' : '' %>"
+    >
+      <%= astro.category %>
+    </p>
+    <% } %>
+
     <img
       src="<%= astro.image_url %>"
       alt="Imagem que representa <%= astro.name %>"

@@ -4,7 +4,7 @@ import sql from "./db";
 const astrosData = [
   {
     name: "Sol",
-    category: "estrela",
+    category: "Estrela",
     description: "A estrela central do nosso sistema solar",
     image_url:
       "https://recreio.com.br/media/_versions/legacy/2020/07/03/sol-1223110_widexl.jpg",
@@ -13,7 +13,7 @@ const astrosData = [
   },
   {
     name: "Terra",
-    category: "planeta",
+    category: "Planeta",
     description: "O planeta azul, lar da humanidade",
     image_url:
       "https://static.todamateria.com.br/upload/pl/an/planetaterra-cke.jpg",
@@ -22,7 +22,7 @@ const astrosData = [
   },
   {
     name: "Marte",
-    category: "planeta",
+    category: "Planeta",
     description:
       "O planeta vermelho, com potencial para futuras missões de exploração",
     image_url:
@@ -32,7 +32,7 @@ const astrosData = [
   },
   {
     name: "Júpiter",
-    category: "planeta",
+    category: "Planeta",
     description:
       "O maior planeta do sistema solar, famoso por sua Grande Mancha Vermelha",
     image_url:
@@ -42,7 +42,7 @@ const astrosData = [
   },
   {
     name: "Saturno",
-    category: "planeta",
+    category: "Planeta",
     description:
       "Conhecido pelos seus belos anéis, é o segundo maior planeta do sistema solar",
     image_url:

@@ -35,4 +35,5 @@ export default function errorHandler(
       error: error.message || "Erro desconhecido",
     });
   }
+  console.log(error.stack);
 }

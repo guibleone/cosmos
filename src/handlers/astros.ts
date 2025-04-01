@@ -38,11 +38,18 @@ async function fetchAstros(
       `;
   }
 
+  if (filter?.trim() === "main-moons") {
+    return await sql<Astro[]>`${baseQuery} 
+    WHERE category = 'Lua' ${limitOffset}
+  `;
+  }
+
   if (search?.trim() && category?.trim()) {
     return await sql<Astro[]>`${baseQuery} 
       WHERE unaccent(name) ILIKE unaccent(${"%" + search + "%"}) 
       AND category = ${category}  ${limitOffset}`;
   }
+  
   if (search?.trim()) {
     return await sql<Astro[]>`${baseQuery} 
       WHERE unaccent(name) ILIKE unaccent(${

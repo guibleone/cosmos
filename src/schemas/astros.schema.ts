@@ -13,7 +13,7 @@ export const createAstroSchema = z.object({
       required_error: "Insira a categoria do astro.",
       invalid_type_error: "Categoria deve ser uma string.",
     })
-    .min(5, { message: "Categoria deve ter no mínimo 5 caracteres." })
+    .min(3, { message: "Categoria deve ter no mínimo 3 caracteres." })
     .max(100, { message: "Categoria deve ter no máximo 50 caracteres." }),
   description: z
     .string({
