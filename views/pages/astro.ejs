@@ -1,33 +1,17 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../css/main.css" />
-    <script
-      src="https://unpkg.com/htmx.org@2.0.4"
-      integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+"
-      crossorigin="anonymous"
-    ></script>
-    <title><% astro.name %></title>
-  </head>
-  <body>
-    <section hx-target="this" hx-swap="outerHTML">
-      <img src="<%= astro.image_url %>" alt="Imagem de <%= astro.name %>" />
-      <h1><%= astro.name %></h1>
-      <p><%= astro.description %></p>
-      <p>Categoria: <%= astro.category %></p>
-      <p>Distância do Sol: <%= astro.distance_sun %></p>
-      <p>Peso: <%= astro.weight %></p>
-      <a href="/">Voltar</a>
-      <button
-        hx-trigger="click"
-        hx-confirm="Tem certeza de deletar esse astro?"
-        hx-delete="/astros/<%= astro.id_astro  %>"
-      >
-        Deletar
-      </button>
-      <button hx-get="/astros/<%= astro.id_astro %>/edit">Editar</button>
-    </section>
-  </body>
-</html>
+<section hx-target="this" hx-swap="outerHTML">
+  <img src="<%= astro.image_url %>" alt="Imagem de <%= astro.name %>" />
+  <h1><%= astro.name %></h1>
+  <p><%= astro.description %></p>
+  <p>Categoria: <%= astro.category %></p>
+  <p>Distância do Sol: <%= astro.distance_sun %></p>
+  <p>Peso: <%= astro.weight %></p>
+  <a href="/">Voltar</a>
+  <button
+    hx-trigger="click"
+    hx-confirm="Tem certeza de deletar esse astro?"
+    hx-delete="/astros/<%= astro.id_astro  %>"
+  >
+    Deletar
+  </button>
+  <button hx-get="/astros/<%= astro.id_astro %>/edit">Editar</button>
+</section>

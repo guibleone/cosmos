@@ -72,10 +72,11 @@ a:hover {
 }
 
 .astro img {
-  min-width: 100%;
+  width: 100%;
   height: 300px;
   object-fit: cover;
   transition: all 0.3s ease;
+  border-radius: 20px;
 }
 
 .astro img:hover {
@@ -99,6 +100,9 @@ a:hover {
   -webkit-line-clamp: 3;
   line-clamp: 3;
   overflow: hidden;
+}
+.astro-link {
+  display: block;
 }
 
 .astro h1,
@@ -358,16 +362,7 @@ a:hover {
 
 .astros-gallery .title h1 {
   font-size: 32px;
-}
-
-.astros-gallery .images {
-  display: grid;
   padding: 20px 0;
-}
-
-.astros-gallery .images img {
-  width: 350px;
-  border-radius: 20px;
 }
 
 .astros-gallery a {
@@ -383,4 +378,10 @@ a:hover {
   justify-content: center;
   align-items: center;
   margin-top: 100px;
+}
+
+/* astros-page */
+
+.astros-page h1 {
+  padding: 15px 0;
 }

@@ -10,9 +10,16 @@ export default function errorHandler(
   next: NextFunction
 ) {
   if (error instanceof HttpError) {
-    response
-      .status(error.status)
-      .send({ name: error.name, error: error.message });
+    if (error.status === 404) {
+      response
+        .status(error.status)
+        .render("partials/errors/not-found.ejs", { error });
+    }
+    if (error.status === 400) {
+      response
+        .status(error.status)
+        .render("partials/errors/invalid-request.ejs", { error });
+    }
   } else if (error instanceof PostgresError) {
     response.status(500);
     response.send({

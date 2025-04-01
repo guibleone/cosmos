@@ -13,7 +13,7 @@ async function findAstroById(id: number): Promise<Astro> {
       Astro[]
     >`SELECT * FROM astros WHERE id_astro=${id}`;
     if (!astro) {
-      throw new HttpError(404, `Astro com id = ${id} não econtrado.`);
+      throw new HttpError(404, `Astro com id ${id} não econtrado.`);
     }
     return astro;
   } catch (error) {
@@ -49,7 +49,7 @@ async function fetchAstros(
       WHERE unaccent(name) ILIKE unaccent(${"%" + search + "%"}) 
       AND category = ${category}  ${limitOffset}`;
   }
-  
+
   if (search?.trim()) {
     return await sql<Astro[]>`${baseQuery} 
       WHERE unaccent(name) ILIKE unaccent(${
@@ -86,9 +86,20 @@ export async function getAllAstros(
     const astros = await fetchAstros(search, category, filter, limit, offset);
 
     if (astros.length === 0) {
-      response.status(200).send("<p>Nenhum astro encontrado.</p>");
+      response.render("layout", {
+        main: "pages/astros",
+        title: "Astros | Explore o Cosmos",
+        astros,
+        notFound: "Nenhum astro encontrado.",
+      });
+    } else if (filter) {
+      response.render("partials/astros-gallery", { astros });
     } else {
-      response.render("partials/astros", { astros });
+      response.render("layout", {
+        main: "pages/astros",
+        title: "Astros | Explore o Cosmos",
+        astros,
+      });
     }
   } catch (error) {
     next(error);
