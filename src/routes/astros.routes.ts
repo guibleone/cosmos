@@ -6,7 +6,7 @@ import {
   getAstroById,
   getEditForm,
   updateAstro,
-} from "../handlers/astros";
+} from "../handlers/astros.handler";
 import getParamsId from "../middlewares/getParamsId";
 
 const router = Router();

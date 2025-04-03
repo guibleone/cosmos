@@ -1,9 +1,11 @@
 import "dotenv/config";
 import express from "express";
 import logger from "./middlewares/logger";
-import astroRouter from "./routes/astros";
+import astroRouter from "./routes/astros.routes";
 import errorHandler from "./middlewares/errorHandler";
 import path from "path";
+
+import routes from "./routes/index";
 
 const app = express();
 const PORT = process.env.PORT ? process.env.PORT : 3000;
@@ -20,7 +22,8 @@ app.use(logger);
 app.get("/", (req, res) => {
   res.render("layout", { main: "pages/home", title: "Explore o Cosmos" });
 });
-app.use("/astros", astroRouter);
+
+app.use(routes.apiRouter);
 app.use(errorHandler);
 
 app.listen(PORT, () => {

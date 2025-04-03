@@ -71,6 +71,10 @@ a:hover {
   background-color: #199191;
 }
 
+.cometa {
+  background-color: #5b5b5b;
+}
+
 .astro img {
   width: 100%;
   height: 300px;
@@ -384,4 +388,176 @@ a:hover {
 
 .astros-page h1 {
   padding: 15px 0;
+}
+
+/* famous-comets */
+.famous-comets {
+  display: flex;
+  flex-direction: column;
+}
+
+.famous-comets .title {
+  font-size: 32px;
+  padding: 40px 0;
+  text-align: center;
+}
+
+.comets-names ul {
+  display: flex;
+  justify-content: space-between;
+}
+.comets-names li {
+  font-size: 28px;
+  font-weight: 500;
+  color: #afafaf;
+  transition: all 0.5s ease;
+}
+
+.comets-names .selected {
+  color: #000;
+  text-decoration: underline;
+}
+
+.comets-names li:hover {
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .comets-names ul {
+    flex-direction: column;
+    padding: 20px 0;
+  }
+}
+
+/* selected-comet */
+.selected-comet {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 50px 0;
+  height: 400px;
+  background-color: #ebebeb;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.selected-comet .left {
+  flex: 1;
+  min-width: 300px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.selected-comet .left h1 {
+  font-size: 42px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.selected-comet .left .distance_sun {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 15px 0;
+}
+
+.selected-comet .left .distance_sun h2 {
+  font-weight: 500;
+  font-size: 20px;
+  color: #555;
+}
+
+.selected-comet .left .distance_sun img {
+  width: 40px;
+  height: auto;
+}
+
+.selected-comet .left .description {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  color: #666;
+  line-height: 1.5;
+}
+
+.selected-comet .left .description a {
+  font-size: 24px;
+}
+
+.selected-comet .image {
+  flex: 1;
+  min-width: 300px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.selected-comet .image img {
+  height: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  .selected-comet {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .selected-comet .left {
+    padding: 30px;
+    text-align: center;
+  }
+
+  .selected-comet .left h1 {
+    font-size: 36px;
+  }
+
+  .selected-comet .left .distance_sun {
+    justify-content: center;
+  }
+
+  .selected-comet .image img {
+    border-radius: 0;
+    width: 100%;
+  }
+}
+
+/* perks */
+.perks {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+.perks .title {
+  text-align: center;
+  font-size: 46px;
+}
+
+.perks .itens {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.perks .itens h1 {
+  font-size: 46px;
+}
+.perks .itens p {
+  font-size: 30px;
+}
+
+.perks img {
+  width: 100%;
+  border-radius: 20px;
+  max-height: 300px;
+  object-fit: cover;
 }

@@ -1,0 +1,9 @@
+<h1 class="title">Cometas Famosos</h1>
+<div class="comets-names">
+  <div
+    hx-get="/astros?filter=famous-comets&category=Cometa&limit=4&offset=0"
+    hx-target="this"
+    hx-trigger="revealed"
+  ></div>
+  <div id="comet-display"></div>
+</div>

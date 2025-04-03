@@ -1,0 +1,14 @@
+<ul>
+  <% comets.forEach((comet, index) => { %>
+  <li
+    hx-get="/astros/<%- comet.id_astro %>?filter=famous-comets"
+    hx-trigger="<%= index === 0 ? 'load, click' : 'click' %>"
+    hx-target="#comet-display"
+    hx-swap="innerHTML"
+    class="<%= index === 0 ? 'selected' : '' %>"
+    hx-on:click="document.querySelector('.selected').classList.remove('selected'); this.classList.add('selected');"
+  >
+    <%- comet.name %>
+  </li>
+  <% }) %>
+</ul>
