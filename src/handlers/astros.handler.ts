@@ -93,6 +93,11 @@ export async function getAllAstros(
         notFound: "Nenhum astro encontrado.",
       });
     } else if (filter) {
+      if (filter === "famous-comets") {
+        response.render("partials/home/comets-names", {
+          comets: astros.map(({ id_astro, name }) => ({ id_astro, name })),
+        });
+      }
       response.render("partials/astros-gallery", { astros });
     } else {
       response.render("layout", {
@@ -115,6 +120,12 @@ export async function getAstroById(
   try {
     const { id_astro } = request;
     const astro = await findAstroById(id_astro);
+    const filter = request.query.filter as string | undefined;
+
+    if (filter === "famous-comets") {
+      response.render("partials/home/selected-comet", { comet: astro });
+    }
+
     response.render("pages/astro", { astro });
   } catch (error) {
     next(error);

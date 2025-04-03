@@ -1,0 +1,17 @@
+<article class="selected-comet">
+  <div class="left">
+    <div class="distance_sun">
+      <img src="/images/Sun.svg" alt="Ícone do sol." />
+      <h2><%= comet.distance_sun %> KM</h2>
+    </div>
+    <h1><%= comet.name %></h1>
+
+    <div class="description">
+      <%= comet.description %>
+      <a href="/astros/<%= comet.id_astro %>">saiba mais</a>
+    </div>
+  </div>
+  <div class="image">
+    <img src="<%= comet.image_url %>" alt="Imagem do <%= comet.name %>" />
+  </div>
+</article>
