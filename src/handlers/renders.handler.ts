@@ -25,6 +25,8 @@ async function astros(request: Request, response: Response) {
       return response.render("partials/home/comets-names", {
         comets: astros.map(({ id_astro, name }) => ({ id_astro, name })),
       });
+    case "recommended-astros":
+      return response.render("partials/astro/recommended-astro", { astros });
     case "astros-gallery":
       return response.render("partials/astros-gallery", { astros });
     default:
@@ -42,7 +44,11 @@ async function astrosDetail(request: Request, response: Response) {
   if (render === "selected-comet") {
     return response.render("partials/home/selected-comet", { comet: astro });
   } else {
-    return response.render("astro", { astro });
+    return response.render("layout", {
+      main: "astro",
+      title: astro.name + " | Explore o Cosmos",
+      astro,
+    });
   }
 }
 

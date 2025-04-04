@@ -3,6 +3,7 @@ export type Astro = {
   name: string;
   category: string;
   description: string;
+  body: string;
   image_url: string;
   distance_sun: number;
   weight: number;

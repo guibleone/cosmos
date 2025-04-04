@@ -26,6 +26,19 @@ export async function fetchAstros(
   `;
   }
 
+  if (filter?.trim() === "recommended-astros") {
+    if (!category || !search) {
+      throw new HttpError(
+        400,
+        "Parâmetros 'category' e 'search' (nome) são obrigatórios para recomendados."
+      );
+    }
+
+    return await sql<Astro[]>`${baseQuery}
+      WHERE category = ${category} AND name != ${search}
+      ${limitOffset}`;
+  }
+
   if (search?.trim() && category?.trim()) {
     return await sql<Astro[]>`${baseQuery} 
       WHERE unaccent(name) ILIKE unaccent(${"%" + search + "%"}) 

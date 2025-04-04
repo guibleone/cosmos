@@ -1,17 +1,54 @@
-<section hx-target="this" hx-swap="outerHTML">
-  <img src="<%= astro.image_url %>" alt="Imagem de <%= astro.name %>" />
-  <h1><%= astro.name %></h1>
-  <p><%= astro.description %></p>
-  <p>Categoria: <%= astro.category %></p>
-  <p>Distância do Sol: <%= astro.distance_sun %></p>
-  <p>Peso: <%= astro.weight %></p>
-  <a href="/">Voltar</a>
-  <button
-    hx-trigger="click"
-    hx-confirm="Tem certeza de deletar esse astro?"
-    hx-delete="/api/astros/<%= astro.id_astro  %>"
-  >
-    Deletar
-  </button>
-  <button hx-get="/api/astros/<%= astro.id_astro %>/edit">Editar</button>
+<section class="astro-detail-page">
+  <div class="links">
+    <a href="/astros">Astros</a> &gt;
+    <a href="/astros?category=<%= astro.category  %>"><%= astro.category %> </a>
+  </div>
+
+  <div class="container">
+    <section class="details">
+      <img
+        class="image"
+        src="<%= astro.image_url %>"
+        alt="Imagem de <%= astro.name %>"
+      />
+
+      <ul>
+        <li>
+          <img src="/images/EarthPlanet.svg" alt="Ícone do planeta Terra." />
+          <%= astro.category %>
+        </li>
+        <li>
+          <img src="/images/SunOutlined.svg" alt="Ícone do Sol." /><%=
+          astro.distance_sun %> km
+        </li>
+        <li>
+          <img src="/images/Weight.svg" alt="Iconde de peso." /><%= astro.weight
+          %> kg
+        </li>
+      </ul>
+
+      <div class="description">
+        <h1><%= astro.name %></h1>
+        <p><%= astro.description %></p>
+      </div>
+    </section>
+
+    <section class="right">
+      <div class="body">
+        <p><%= astro.body %></p>
+      </div>
+
+      <div class="recommended-astros">
+        <h2>Você também pode gostar</h2>
+        <div
+          hx-get="/astros?category=<%= astro.category  %>&filter=recommended-astros&search=<%= astro.name %>&limit=4"
+          hx-target="this"
+          hx-swap="innerHTML"
+          hx-trigger="load"
+        >
+          Carregando dados...
+        </div>
+      </div>
+    </section>
+  </div>
 </section>
