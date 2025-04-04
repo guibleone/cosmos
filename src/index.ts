@@ -17,13 +17,14 @@ app.set("views", path.join(__dirname, "../views"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
+// console logger
 app.use(logger);
 
-app.get("/", (req, res) => {
-  res.render("layout", { main: "pages/home", title: "Explore o Cosmos" });
-});
+// render html pages
+app.use("/", routes.renderRoutes);
 
-app.use(routes.apiRouter);
+// handle api requests
+app.use("/api", routes.apiRouter);
 app.use(errorHandler);
 
 app.listen(PORT, () => {

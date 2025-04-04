@@ -4,66 +4,7 @@ import { CreateAstroDto, UpdateAstroDto } from "../dto/astros.dto";
 import { createAstroSchema, updateAstroSchema } from "../schemas/astros.schema";
 import { HttpError } from "../utils/errors";
 import { Astro, QueryParams } from "../types/astro";
-import { solarSystem } from "../utils/consts";
-
-// Helper function to find astro by id on data base
-async function findAstroById(id: number): Promise<Astro> {
-  try {
-    const [astro] = await sql<
-      Astro[]
-    >`SELECT * FROM astros WHERE id_astro=${id}`;
-    if (!astro) {
-      throw new HttpError(404, `Astro com id ${id} não econtrado.`);
-    }
-    return astro;
-  } catch (error) {
-    throw error;
-  }
-}
-
-// Helper function to build and execute query
-async function fetchAstros(
-  search = "",
-  category = "",
-  filter = "",
-  limit = 10,
-  offset = 0
-): Promise<Astro[]> {
-  const baseQuery = sql`SELECT * FROM astros`;
-  const limitOffset = sql`LIMIT ${limit} OFFSET ${offset}`;
-
-  if (filter?.trim() === "solar-system") {
-    return await sql<Astro[]>`${baseQuery} 
-        WHERE name in ${sql(solarSystem)} ${limitOffset}
-      `;
-  }
-
-  if (filter?.trim() === "main-moons") {
-    return await sql<Astro[]>`${baseQuery} 
-    WHERE category = 'Lua' ${limitOffset}
-  `;
-  }
-
-  if (search?.trim() && category?.trim()) {
-    return await sql<Astro[]>`${baseQuery} 
-      WHERE unaccent(name) ILIKE unaccent(${"%" + search + "%"}) 
-      AND category = ${category}  ${limitOffset}`;
-  }
-
-  if (search?.trim()) {
-    return await sql<Astro[]>`${baseQuery} 
-      WHERE unaccent(name) ILIKE unaccent(${
-        "%" + search + "%"
-      })  ${limitOffset}`;
-  }
-  if (category?.trim()) {
-    return await sql<
-      Astro[]
-    >`${baseQuery} WHERE category = ${category} ${limitOffset}`;
-  }
-
-  return await sql<Astro[]>`${baseQuery} ${limitOffset}`;
-}
+import { fetchAstros, findAstroById } from "../utils/helper-functions";
 
 // GET all astros handler
 export async function getAllAstros(
@@ -84,28 +25,7 @@ export async function getAllAstros(
 
   try {
     const astros = await fetchAstros(search, category, filter, limit, offset);
-
-    if (astros.length === 0) {
-      response.render("layout", {
-        main: "pages/astros",
-        title: "Astros | Explore o Cosmos",
-        astros,
-        notFound: "Nenhum astro encontrado.",
-      });
-    } else if (filter) {
-      if (filter === "famous-comets") {
-        response.render("partials/home/comets-names", {
-          comets: astros.map(({ id_astro, name }) => ({ id_astro, name })),
-        });
-      }
-      response.render("partials/astros-gallery", { astros });
-    } else {
-      response.render("layout", {
-        main: "pages/astros",
-        title: "Astros | Explore o Cosmos",
-        astros,
-      });
-    }
+    response.send(astros);
   } catch (error) {
     next(error);
   }
@@ -120,13 +40,7 @@ export async function getAstroById(
   try {
     const { id_astro } = request;
     const astro = await findAstroById(id_astro);
-    const filter = request.query.filter as string | undefined;
-
-    if (filter === "famous-comets") {
-      response.render("partials/home/selected-comet", { comet: astro });
-    }
-
-    response.render("pages/astro", { astro });
+    response.send(astro);
   } catch (error) {
     next(error);
   }

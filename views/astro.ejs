@@ -9,9 +9,9 @@
   <button
     hx-trigger="click"
     hx-confirm="Tem certeza de deletar esse astro?"
-    hx-delete="/astros/<%= astro.id_astro  %>"
+    hx-delete="/api/astros/<%= astro.id_astro  %>"
   >
     Deletar
   </button>
-  <button hx-get="/astros/<%= astro.id_astro %>/edit">Editar</button>
+  <button hx-get="/api/astros/<%= astro.id_astro %>/edit">Editar</button>
 </section>
