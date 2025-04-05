@@ -15,12 +15,13 @@ async function astros(request: Request, response: Response) {
 
   switch (render) {
     case "not-found":
-      return response.render("layout", {
-        main: "astros",
-        title: "Astros | Explore o Cosmos",
-        astros,
-        notFound: "Nenhum astro encontrado.",
-      });
+      // return response.render("layout", {
+      //   main: "astros",
+      //   title: "Astros | Explore o Cosmos",
+      //   astros,
+      //   notFound: "Nenhum astro encontrado.",
+      // });
+      return response.render("partials/not-found-astro");
     case "comets-names":
       return response.render("partials/home/comets-names", {
         comets: astros.map(({ id_astro, name }) => ({ id_astro, name })),
