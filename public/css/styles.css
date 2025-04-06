@@ -230,9 +230,17 @@ a:hover {
   display: flex;
 }
 
-.navbar .right img:first-child {
+.navbar .right .search {
   width: 18px;
   height: 18px;
+}
+
+#searchButtonDesktop img {
+  transition: filter 0.3s;
+}
+
+#searchButtonDesktop:hover img {
+  filter: brightness(0) invert(1);
 }
 
 .navbar .mobile {
@@ -795,5 +803,94 @@ a:hover {
   }
   .astro-detail-page .details ul li {
     font-size: 14px;
+  }
+}
+
+/* ====== Search Dialog ====== */
+
+body.modal-open {
+  overflow: hidden;
+}
+
+.search-dialog {
+}
+
+dialog:modal {
+  background-color: #ededed;
+  transition: 0.1;
+  transform-origin: center;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid black;
+  border: none;
+  border-radius: 20px;
+  padding: 20px;
+  width: 700px;
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.search-dialog .search {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.search-dialog .search p {
+  padding: 2px 6px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid #000;
+  border-radius: 5px;
+}
+
+.search-dialog input {
+  font-size: 20px;
+  background-color: transparent;
+  border: none;
+}
+
+.search-dialog input:focus {
+  outline: none;
+  border: none;
+}
+
+.search-dialog .itens {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 15px 10px;
+}
+
+.search-dialog .iten {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 3px;
+  border-radius: 10px;
+  transition: background-color 0.2s ease;
+}
+
+.search-dialog .iten:hover {
+  background-color: #d1d1d1;
+  cursor: pointer;
+}
+
+.search-dialog .iten img {
+  width: 40px;
+}
+
+.search-dialog .iten p {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .search-dialog {
+    width: 90%;
   }
 }

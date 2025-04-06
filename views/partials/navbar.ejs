@@ -12,9 +12,14 @@
     <li><a href="/astros">Todos</a></li>
   </ul>
   <div class="right">
-    <button>
-      <img src="/images/Search.svg" alt="Imagem de lupa da busca." /> Buscar
-      Astro
+    <button id="searchButton">
+      <img
+        id="searchImg"
+        class="search"
+        src="/images/Search.svg"
+        alt="Imagem de lupa da busca."
+      />
+      Buscar Astro
     </button>
     <img
       onclick="window.location.href = '/login'"
@@ -29,6 +34,7 @@
       src="/images/menu-svgrepo-com.svg"
       alt="Icone do menu."
       id="menuLogo"
+      onclick="openDrawer()"
     />
   </div>
   <div id="navigationDrawer" class="navigationDrawer">
@@ -38,6 +44,7 @@
         id="rightArrow"
         src="/images/Right.svg"
         alt="Imagem de seta à direita.."
+        onclick="closeDrawer()"
       />
     </div>
 
@@ -71,3 +78,19 @@
     </div>
   </div>
 </nav>
+
+<dialog id="searchDialog" class="search-dialog">
+  <div class="search">
+    <input type="text" placeholder="Qual astro está procurando?" />
+    <p>Esc</p>
+  </div>
+
+  <hr />
+
+  <div id="searchResult" class="itens">
+    <div class="iten">
+      <img src="/images/EarthPlanet.svg" alt="" />
+      <p>Terra</p>
+    </div>
+  </div>
+</dialog>

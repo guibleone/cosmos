@@ -15,3 +15,27 @@ rightArrow.addEventListener("click", () => {
   searchButton.innerText = "";
   document.body.style.overflow = "";
 });
+
+// Search Dialog
+const searchDialog = document.getElementById("searchDialog");
+// Abre o dialog
+searchButton.addEventListener("click", () => {
+  document.body.classList.add("modal-open");
+  searchDialog.showModal(); // método nativo do <dialog>
+});
+
+// Fecha com ESC automaticamente (já funciona por padrão)
+// Fecha ao clicar fora:
+searchDialog.addEventListener("click", (event) => {
+  const rect = searchDialog.getBoundingClientRect();
+  const clickedOutside =
+    event.clientX < rect.left ||
+    event.clientX > rect.right ||
+    event.clientY < rect.top ||
+    event.clientY > rect.bottom;
+
+  if (clickedOutside) {
+    document.body.classList.remove("modal-open");
+    searchDialog.close();
+  }
+});
