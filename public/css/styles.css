@@ -498,6 +498,11 @@ a:hover {
   padding: 15px 0;
 }
 
+.astros-page {
+  display: flex;
+  flex-direction: column;
+}
+
 /* famous-comets */
 .famous-comets {
   display: flex;
@@ -786,6 +791,7 @@ a:hover {
   .astro-detail-page .container {
     flex-direction: column;
     align-items: center;
+    gap: 15px;
   }
   .recommended-astros ul article {
     flex-direction: column;
@@ -890,4 +896,54 @@ dialog::backdrop {
   .search-dialog {
     width: 90%;
   }
+}
+
+/* PAGINATION */
+.pagination {
+  display: flex;
+  align-self: center;
+  border: 3px solid #ededed;
+  border-radius: 5px;
+  margin-top: 120px;
+}
+
+.pagination:hover {
+  cursor: pointer;
+}
+
+.pagination .enabled {
+  font-weight: 800;
+}
+
+.pagination button {
+  background-color: transparent;
+  border: none;
+  padding: 5px 15px;
+  transition: ease 0.3s;
+  font-size: 16px;
+}
+
+.pagination button:hover {
+  cursor: pointer;
+  background-color: #d1d1d1;
+}
+
+.pagination .disabled {
+  font-weight: 400;
+}
+
+.pagination .pages {
+  display: flex;
+}
+
+.pagination .pages p {
+  padding: 5px 15px;
+}
+
+.pagination .pages .currentPage {
+  border: 2px solid black;
+}
+
+.pagination .pages .currentPage:hover {
+  border: 2px solid#ededed;
 }

@@ -7,6 +7,15 @@ declare global {
       astros: Astro[];
       render: string;
       astro: Astro;
+      pagination: {
+        totalPage: number;
+        currentPage: number;
+        hasNext: boolean;
+        hasPrevious: boolean;
+        offset: number;
+        limit: number;
+        category?: string;
+      };
     }
   }
 }

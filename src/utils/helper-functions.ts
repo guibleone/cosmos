@@ -74,3 +74,18 @@ export async function findAstroById(id: number): Promise<Astro> {
     throw error;
   }
 }
+
+// Helper function to get astros quantity in DB
+export async function getAstrosQuantity(category?: string): Promise<number> {
+  let baseQuery = sql`SELECT COUNT(id_astro) from astros`;
+  let astrosQuantity;
+  if (category) {
+    [astrosQuantity] = await sql`${baseQuery} WHERE category = ${category}`;
+  } else {
+    [astrosQuantity] = await sql`${baseQuery}`;
+  }
+  if (astrosQuantity.count === 0) {
+    throw new HttpError(404, "nenhum astro encontrado.");
+  }
+  return astrosQuantity.count;
+}

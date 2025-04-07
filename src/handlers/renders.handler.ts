@@ -11,7 +11,7 @@ async function homepage(request: Request, response: Response) {
 }
 
 async function astros(request: Request, response: Response) {
-  const { astros, render } = request;
+  const { astros, render, pagination } = request;
 
   switch (render) {
     case "not-found":
@@ -31,12 +31,13 @@ async function astros(request: Request, response: Response) {
     case "search-results":
       return response.render("partials/home/search-results", { astros });
     case "astros-gallery":
-      return response.render("partials/astros-gallery", { astros });
+      return response.render("partials/astros-gallery", { astros, pagination });
     default:
       return response.render("layout", {
         main: "astros",
         title: "Astros | Explore o Cosmos",
         astros,
+        pagination,
       });
   }
 }
