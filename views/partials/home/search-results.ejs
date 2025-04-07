@@ -1,0 +1,21 @@
+<% astros.forEach(astro => { %>
+
+<div
+  class="iten"
+  data-astro-id="<%- astro.id_astro  %>"
+  onclick="window.location.href = '/astros/<%- astro.id_astro %>'"
+>
+  <% if(astro.category === "Planeta"){ %>
+  <img src="/images/EarthPlanet.svg" alt="" />
+  <% } else if(astro.category === "Estrela"){ %>
+  <img src="/images/SunOutlined.svg" alt="" />
+  <% } else if(astro.category === "Cometa"){ %>
+  <img src="/images/Comet.svg" alt="" />
+  <% } else if(astro.category === "Lua"){ %>
+  <img src="/images/MoonSymbol.svg" alt="" />
+  <% } %>
+
+  <p><%- astro.name %></p>
+</div>
+
+<% }) %>

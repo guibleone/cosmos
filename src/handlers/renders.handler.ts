@@ -28,6 +28,8 @@ async function astros(request: Request, response: Response) {
       });
     case "recommended-astros":
       return response.render("partials/astro/recommended-astro", { astros });
+    case "search-results":
+      return response.render("partials/home/search-results", { astros });
     case "astros-gallery":
       return response.render("partials/astros-gallery", { astros });
     default:

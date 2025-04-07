@@ -1,6 +1,6 @@
 <nav class="navbar">
   <div class="left">
-    <img src="/images/Galaxy_icon 1.png" alt="Logo de galáxia." />
+    <img src="/images/Galaxy.svg" alt="Logo de galáxia." />
     <a href="/"><h1>Cosmos</h1></a>
   </div>
   <ul>
@@ -12,7 +12,7 @@
     <li><a href="/astros">Todos</a></li>
   </ul>
   <div class="right">
-    <button id="searchButton">
+    <button onclick="openDialog()" id="searchButton">
       <img
         id="searchImg"
         class="search"
@@ -29,12 +29,16 @@
     />
   </div>
   <div class="mobile">
-    <img src="/images/Search.svg" alt="Imagem de lupa da busca." />
+    <img
+      onclick="openDialog()"
+      src="/images/Search.svg"
+      alt="Imagem de lupa da
+    busca."
+    />
     <img
       src="/images/menu-svgrepo-com.svg"
       alt="Icone do menu."
       id="menuLogo"
-      onclick="openDrawer()"
     />
   </div>
   <div id="navigationDrawer" class="navigationDrawer">
@@ -47,7 +51,6 @@
         onclick="closeDrawer()"
       />
     </div>
-
     <hr />
     <br />
 
@@ -68,29 +71,25 @@
         <img src="/images/Comet.svg" alt="Ícone de Cometa" />
         <a href="/astros?category=Cometa">Cometas</a>
       </div>
-
-      <div class="search">
-        <button id="searchButton">
-          <img src="/images/Search.svg" alt="Imagem de lupa da busca." /> Buscar
-          Astro
-        </button>
-      </div>
     </div>
   </div>
 </nav>
 
 <dialog id="searchDialog" class="search-dialog">
   <div class="search">
-    <input type="text" placeholder="Qual astro está procurando?" />
+    <input
+      hx-get="/astros"
+      hx-trigger="load, input changed delay:0.3s"
+      hx-target="#search-result"
+      hx-vals='{"filter": "search-results", "limit": 4}'
+      type="text"
+      name="search"
+      placeholder="Qual astro está procurando?"
+    />
     <p>Esc</p>
   </div>
 
   <hr />
 
-  <div id="searchResult" class="itens">
-    <div class="iten">
-      <img src="/images/EarthPlanet.svg" alt="" />
-      <p>Terra</p>
-    </div>
-  </div>
+  <div id="search-result" class="itens"></div>
 </dialog>

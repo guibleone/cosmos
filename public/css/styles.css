@@ -235,11 +235,11 @@ a:hover {
   height: 18px;
 }
 
-#searchButtonDesktop img {
+#searchButton img {
   transition: filter 0.3s;
 }
 
-#searchButtonDesktop:hover img {
+#searchButton:hover img {
   filter: brightness(0) invert(1);
 }
 
@@ -812,9 +812,6 @@ body.modal-open {
   overflow: hidden;
 }
 
-.search-dialog {
-}
-
 dialog:modal {
   background-color: #ededed;
   transition: 0.1;
@@ -830,7 +827,7 @@ dialog:modal {
 }
 
 dialog::backdrop {
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .search-dialog .search {

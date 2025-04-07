@@ -29,6 +29,8 @@ export async function fetchAllAstros(
       request.render = "comets-names";
     } else if (filter === "recommended-astros") {
       request.render = "recommended-astros";
+    } else if (filter === "search-results") {
+      request.render = "search-results";
     } else if (filter) {
       request.render = "astros-gallery";
     } else {

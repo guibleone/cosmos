@@ -5,24 +5,21 @@ const searchButton = document.getElementById("searchButton");
 
 menuLogo.addEventListener("click", () => {
   navigationDrawer.style.width = "100%";
-  searchButton.innerHTML = `<img src="/images/Search.svg" alt="Imagem de lupa da busca." /> Buscar
-        Astro`;
   document.body.style.overflow = "hidden";
 });
 
 rightArrow.addEventListener("click", () => {
   navigationDrawer.style.width = "0";
-  searchButton.innerText = "";
   document.body.style.overflow = "";
 });
 
-// Search Dialog
+//======= Search Dialog =========
 const searchDialog = document.getElementById("searchDialog");
-// Abre o dialog
-searchButton.addEventListener("click", () => {
+
+function openDialog() {
   document.body.classList.add("modal-open");
-  searchDialog.showModal(); // método nativo do <dialog>
-});
+  searchDialog.showModal();
+}
 
 // Fecha com ESC automaticamente (já funciona por padrão)
 // Fecha ao clicar fora:
