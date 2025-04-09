@@ -1,0 +1,38 @@
+services:
+  server:
+    build:
+      context: .
+    ports:
+      - 3000:3000
+    environment:
+      DB_HOST: postgres
+      DB_USERNAME: postgres
+      DB_PASSWORD: hXWcxKSAiKGwqg==
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - cosmos-network
+
+  postgres:
+    image: postgres:17.4
+    restart: always
+    user: postgres
+    environment:
+      - POSTGRES_PASSWORD=hXWcxKSAiKGwqg==
+      - POSTGRES_DB=cosmos
+    volumes:
+      - psql-data:/var/lib/postgresql/data
+    expose:
+      - 5432
+    healthcheck:
+      test: ["CMD", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - cosmos-network
+volumes:
+  psql-data:
+networks:
+  cosmos-network:

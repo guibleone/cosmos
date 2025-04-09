@@ -12,7 +12,6 @@ export const solarSystem = [
 ];
 
 export const astrosDataTest = [
-  // ASTROS ORIGINAIS (Sol, Terra, Marte, Júpiter, Saturno)
   {
     name: "Sol",
     category: "Estrela",
