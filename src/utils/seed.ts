@@ -1,4 +1,3 @@
-import "dotenv/config";
 import chalk from "chalk";
 import sql from "./db";
 import { astrosDataTest } from "./consts";
@@ -65,9 +64,7 @@ async function main() {
         break;
       }
       case "insert": {
-        if (process.env.DB_INSERT === "true") {
-          await insertData();
-        }
+        await insertData();
         break;
       }
       default: {
