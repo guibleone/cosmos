@@ -2,6 +2,12 @@
 
 A web application to explore the cosmos, built with **HTMX** and **Express.js**.
 
+![Home Page](./docs/CosmosHomePage.png)
+
+---
+
+![Todos os astros](./docs/AllAstros.png)
+
 ## Features
 
 - Dynamic rendering of celestial objects (astros) using HTMX.
