@@ -6,6 +6,7 @@ services:
       DB_HOST: postgres
       DB_USERNAME: postgres
       DB_PASSWORD: hXWcxKSAiKGwqg==
+      DB_INSERT: "true"
     depends_on:
       postgres:
         condition: service_healthy

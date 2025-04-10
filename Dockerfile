@@ -11,4 +11,4 @@ RUN pnpm run build
 
 EXPOSE 3000
 
-CMD pnpm run seed create && pnpm run seed insert && pnpm run start
+CMD ["sh", "-c", "pnpm run seed create && pnpm run seed insert && pnpm run start"]
